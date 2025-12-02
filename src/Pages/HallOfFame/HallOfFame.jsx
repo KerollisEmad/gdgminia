@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import kerollisImage from "../../assets/images/HallOfFame/Kerollis.jpg";
-import abdallahamrImage from "../../assets/images/HallOfFame/abdallahamr.jpg";
+import abdallahamrImage from "../../assets/images/HallOfFame/AbdallahAmr.jpg";
 import abdallahMosatafImage from "../../assets/images/HallOfFame/AbdallahMostafa.jpg";
 import AlaaImage from "../../assets/images/HallOfFame/Alaa.jpg";
 import AhmedRabeaImage from "../../assets/images/HallOfFame/AhmedRabea.jpg";
