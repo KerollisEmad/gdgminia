@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
-  const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
   return <>
    <motion.footer
       className="relative overflow-hidden bg-bgFooter px-4 sm:px-8 md:px-40.5 pb-8 sm:pb-12 md:pb-17 flex flex-col gap-8 sm:gap-12 md:gap-16.25"
