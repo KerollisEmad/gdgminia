@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* &=========================
+   & theme custom
+   &========================= */
+
+@theme {
+  --color-primary: #0b3282;
+  --color-secondry: #376bd4;
+  --color-bgSection: rgba(238, 233, 233, 0.49);
+  --color-bgCard:#E0E2E6;
+  --color-borderCard:#478AF5;
+  --color-bgLight: rgba(155, 189, 243, 0.45);
+  --color-bgHover: rgba(71, 138, 245, 0.85);
+  --color-shadowCard:rgba(196, 137, 137, 1);
+  --color-borderGallery: rgba(219, 174, 54, 1);
+  --color-bgFooter:rgba(8, 46, 122, 1);
+  --font-poppins: "Poppins", sans-serif;
+}
+
+/* &=========================
+   & base custom
+   &========================= */
+
+@layer base {
+  body {
+    @apply bg-white;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-poppins;
+  }
+  p {
+    @apply leading-8 md:leading-12;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+}
+/* &=========================
+   & utilities custom
+   &========================= */
+
+@utility container {
+  @apply mx-auto px-5 sm:px-8 lg:px-10 md:w-10/12 ;
+}
+
+@utility font-poppins {
+  font-family: var(--font-poppins);
+}
+@utility bg-btn-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(147, 147, 147, 1),
+    rgba(45, 45, 45, 0.8)
+  );
+}
+
+/* &=========================
+   & component custom
+   &========================= */
+
+@layer components {
+  .form-control {
+    @apply w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-primary placeholder:text-gray-300;
+  }
+  .btn-primary {
+    @apply bg-secondry hover:bg-primary text-white w-full py-3 rounded-lg font-semibold transition-colors duration-300;
+  }
+  .title-section {
+    @apply text-3xl w-fit sm:text-4xl md:text-5xl mx-auto font-bold text-secondry mb-16 relative;
+
+    @apply after:absolute after:bg-secondry after:w-5/12 after:h-1 md:after:h-1.5 after:rounded-3xl after:-bottom-3 md:after:-bottom-4 after:left-1/2 after:-translate-x-1/2;
+  }
+  .title-section-lg {
+    @apply text-4xl w-fit sm:text-5xl md:text-7xl mx-auto font-bold text-primary mb-20 relative;
+
+    @apply after:absolute after:bg-primary after:w-8/12 after:h-1.5 md:after:h-2 after:rounded-3xl after:-bottom-4 md:after:-bottom-5 after:left-1/2 after:-translate-x-1/2;
+  }
+  .title-section-Committe {
+    @apply text-4xl w-fit sm:text-5xl lg:text-7xl mx-auto font-bold text-secondry mb-12 lg:mb-20 relative;
+
+    @apply after:absolute after:bg-secondry after:w-8/12 after:h-1 lg:after:h-1.5 after:rounded-3xl after:-bottom-3 lg:after:-bottom-4 after:left-1/2 after:-translate-x-1/2;
+  }
+  .padding-section {
+    @apply py-16 md:py-24;
+  }
+  .animate-card-hover {
+    @apply transition-transform duration-300 ease-in-out  ;
+    &:hover {
+      @apply -translate-y-1.5 shadow-md shadow-shadowCard;
+    }
+
+  } 
+  .version::after {
+    content: '';
+    width: 100%;
+    height: 6px;
+    background-color: #0B3282;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    border-radius: 20px;
+  }
+}
+
+
+.title::after,
+.title_event::after {
+  content: '';
+  width: 250px;
+  height: 6px;
+  background-color: #0B3282;
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  border-radius: 20px;
+}
+
+.title_event::after {
+  bottom: -5px;
+  width: 150px;
+}
+
+.balloon {
+  width: 100px;
+  height: 120px;
+  border-radius: 50% 50% 45% 55%;
+  position: relative;
+  box-shadow: inset -10px -10px 20px rgba(0,0,0,0.2),
+              inset 10px 10px 20px rgba(255,255,255,0.3),
+              0 10px 30px rgba(0,0,0,0.3);
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="32" width="32"><line x1="16" y1="0" x2="16" y2="32" stroke="black" stroke-width="2"/></svg>') 16 0, pointer;
+  transition: transform 0.2s;
+}
+
+.balloon:hover {
+  transform: scale(1.05);
+}
+
+.balloon-bottom {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 12px solid #555;
+}
+
+.string svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Explosion particles */
+.explosion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: explode 0.6s ease-out forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
