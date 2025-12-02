@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_CONFIG } from "../Config/Config";
+import { API_CONFIG } from "../config/config.js";
 
 //^  Create Axios Instance
 export const apiGDG = axios.create({
