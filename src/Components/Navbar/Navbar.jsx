@@ -1,9 +1,11 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react"; // ضيف useRef و useEffect
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("");
+  const menuRef = useRef(null); // ده الريف للموبايل menu
 
   const toggleMenu = () => setIsOpen((s) => !s);
   const closeMenu = () => setIsOpen(false);
@@ -12,6 +14,26 @@ const Navbar = () => {
     setActiveLink(link);
     closeMenu();
   };
+
+  // دالة بتقفل الموبايل menu لما تضغط بره
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
 
   const hamburgerStyle = `
     .hamburger {
@@ -68,14 +90,14 @@ const Navbar = () => {
           {/* //^ Mobile: Black logo only */}
           <img
             className="block lg:hidden w-full h-full object-contain"
-            src="/images/Gdg-logo-black.png"
+            src="/images/Gdg-logo.svg"
             alt="GDG Logo Black"
           />
 
           {/* //^ Desktop: Normal logo with hover effect */}
           <img
             className="hidden lg:absolute top-0 left-0 w-full h-full object-contain transition-opacity duration-500 opacity-0 group-hover:opacity-100 lg:block"
-            src="/images/Gdg-logo-black.png"
+            src="/images/Gdg-logo.svg"
             alt="GDG Logo Hover"
           />
           <img
@@ -136,6 +158,7 @@ const Navbar = () => {
         {/* //^ Mobile Menu (floating dropdown) */}
         {isOpen && (
           <div
+          ref={menuRef}
             className="fixed top-[calc(13vh+1rem)] left-[5vw] right-[5vw] rounded-[0.9375rem] p-6 shadow-lg z-999 lg:hidden flex flex-col gap-6 border border-white/20 transition-all duration-300 transform"
             style={{
               background: "rgba(255, 255, 255, 0.95)",
@@ -176,17 +199,6 @@ const Navbar = () => {
               Events
             </Link>
             <Link
-              onClick={() => handleLinkClick("join")}
-              className={`font-bold text-[1.125rem] transition-colors cursor-pointer ${
-                activeLink === "join"
-                  ? "text-[#478af5]"
-                  : "text-black hover:text-[#478af5]"
-              }`}
-              to="join-us"
-            >
-              Join Us
-            </Link>
-            <Link
               onClick={() => handleLinkClick("hall-of-fame")}
               className={`font-bold text-[1.125rem] transition-colors cursor-pointer ${
                 activeLink === "hall-of-fame"
@@ -196,6 +208,17 @@ const Navbar = () => {
               to="hall-of-fame"
             >
               Hall Of Fame
+            </Link>
+            <Link
+              onClick={() => handleLinkClick("join")}
+              className={`font-bold text-[1.125rem] transition-colors cursor-pointer ${
+                activeLink === "join"
+                  ? "text-[#478af5]"
+                  : "text-black hover:text-[#478af5]"
+              }`}
+              to="join-us"
+            >
+              Join Us
             </Link>
           </div>
         )}
@@ -228,5 +251,4 @@ const Navbar = () => {
     </>
   );
 };
-
 export default Navbar;

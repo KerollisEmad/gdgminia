@@ -22,7 +22,7 @@ export default function About() {
     async function callImg() {
       try {
         const getImg = await axios.get(
-          "https://api.gdg-minia.space/v1/endpoint/sasa/json"
+          "https://api.gdg-minia.space/v1/endpoint/about/json"
         );
         const boardImg = await axios.get(
           "https://api.gdg-minia.space/v1/get_bord_data"

@@ -25,7 +25,7 @@ export default function Home() {
         <section className="text-center pt-20">
           {/* //^ page heading */}
           <div className="">
-            <div className="container mb-16">
+            <div className="container mb-16 py-16 lg:py-24">
               <h1 className=" sm:text-6xl font-extrabold text-5xl text-primary relative ">
                 {" "}
                 GDG Minya{" "}

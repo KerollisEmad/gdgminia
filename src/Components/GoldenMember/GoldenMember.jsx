@@ -32,7 +32,7 @@ export default function GoldenMember({ idCommittee }) {
             <div className="container py-16 lg:py-24 text-center">
               <h2 className="title-section-Committe">Golden Member</h2>
               <div
-                className="card-golden group mx-auto bg-[#D2E1FA] text-center w-96 border-2 border-borderCard rounded-2xl px-6 py-4
+                className="card-golden group mx-auto bg-[#D2E1FA] text-center w-full max-w-96 border-2 border-borderCard rounded-2xl px-6 py-4
        hover:shadow-lg *:transition-colors duration-300 hover:bg-[#FAEECD] hover:border-[#EFBF3EDE] hover:cursor-pointer hover:scale-105 hover:ease-in-out"
               >
                 <div className="image">

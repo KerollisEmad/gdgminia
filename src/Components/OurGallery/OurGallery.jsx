@@ -19,7 +19,7 @@ export default function OurGallery() {
     try {
       const options = {
         method: "GET",
-        url: `/endpoint/sasa/json`,
+        url: `/endpoint/home-gallery/json`,
       };
       const { data } = await apiGDG.request(options);
       setData(data.images);

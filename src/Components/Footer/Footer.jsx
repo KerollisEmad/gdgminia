@@ -1,5 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import geeks from "../../assets/images/4geeks.png";
+import sli from "../../assets/images/sli.png";
+import insight from "../../assets/images/insight.png";
 
 export default function Footer() {
 const MotionLink = motion.create(Link);
@@ -58,9 +61,9 @@ const MotionLink = motion.create(Link);
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 />
-                <p className="text-[#939393] text-sm sm:text-base md:text-lg m-0 transition-colors duration-300 group-hover:text-white">
+                <a href="mailto:hrgdgminia@gmail.com" className="text-[#939393] text-sm sm:text-base md:text-lg m-0 transition-colors duration-300 group-hover:text-white">
                   hrgdgminia@gmail.com
-                </p>
+                </a>
               </div>
               <div className="phone flex items-center gap-2 group">
                 <motion.img
@@ -70,9 +73,9 @@ const MotionLink = motion.create(Link);
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 />
-                <p className="text-[#939393] text-sm sm:text-base md:text-lg m-0 transition-colors duration-300 group-hover:text-white">
+                <a href="tel:01023456343" className="text-[#939393] text-sm sm:text-base md:text-lg m-0 transition-colors duration-300 group-hover:text-white">
                   01023456343
-                </p>
+                </a>
               </div>
             </div>
           </motion.div>
@@ -119,8 +122,10 @@ const MotionLink = motion.create(Link);
             <h3 className="text-white font-bold text-base sm:text-lg md:text-[1.875rem] m-0 p-0">
               Annual Partners
             </h3>
-            <div className="Annual-Partners-content flex flex-col">
-              {/* Partners content area */}
+            <div className="Annual-Partners-content flex flex-col sm:flex-row gap-4 sm:gap-6 md:gap-11.25 flex-wrap">
+             <img src={geeks} alt="4Geeks"className="w-25 h-25" />
+              <img src={sli} alt="SLI" className="w-25 h-25"/>
+              <img src={insight} alt="Insight" className="w-25 h-25"/>
             </div>
           </motion.div>
         </div>

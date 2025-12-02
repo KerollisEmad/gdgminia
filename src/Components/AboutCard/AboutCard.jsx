@@ -10,7 +10,7 @@ export default function AboutCard({ gender, boardImage, name, linkedIn, email, d
   const [hoverImg, sethoverImg] = useState(mail)
   return (
     <>
-      <section className="relative min-h-96 bg-bgSection group hover:shadow-[0px_3px_17.1px_0px_#478AF5] rounded-3xl hover:bg-[#5996F629] duration-500 delay-300 transition-all w-[32%] max-md:w-3/4 mt-50">
+      <section className="relative min-h-96 bg-bgSection group hover:shadow-[0px_3px_17.1px_0px_#478AF5] rounded-3xl hover:bg-[#5996F629] duration-500 delay-300 transition-all w-[32%] max-md:w-3/4 mt-20 md:mt-50">
         <figcaption className=" w-full bg-amber-300  relative  ">
           <img className='object-cover w-full  max-md:w-full absolute rounded-3xl -top-30  max-md:translate-y-1/4' src={boardImage != undefined ? boardImage : gender == 'on' ? man : woman} alt="Technical Head" />
         </figcaption>

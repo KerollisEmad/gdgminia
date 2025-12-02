@@ -37,8 +37,8 @@ export default function HomeImage() {
   const [fade, setFade] = useState(false); // for smooth transition
 
   const API_URLS = [
-    "https://api.gdg-minia.space/v1/endpoint/Home/json",
-    "https://api.gdg-minia.space/v1/endpoint/sasa/json",
+    "https://api.gdg-minia.space/v1/endpoint/home-top1/json",
+    "https://api.gdg-minia.space/v1/endpoint/home-top2/json",
   ];
 
   // fetch function
