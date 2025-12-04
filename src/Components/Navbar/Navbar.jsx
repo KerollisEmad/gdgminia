@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react"; // ضيف useRef و useEffect
 
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("");
@@ -16,24 +15,27 @@ const Navbar = () => {
   };
 
   // دالة بتقفل الموبايل menu لما تضغط بره
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+ useEffect(() => {
+  const handleClickOutside = (e) => {
+    // لو فيه منيو مفتوح
+    if (isOpen) {
+      // وتأكد إن الضغط مش جوه المنيو أو الهامبرجر
+      if (
+        menuRef.current && 
+        !menuRef.current.contains(e.target) &&
+        !e.target.closest(".hamburger")
+      ) {
         closeMenu();
       }
-    };
-
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
     }
+  };
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  document.addEventListener("mousedown", handleClickOutside);
 
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [isOpen]);
 
   const hamburgerStyle = `
     .hamburger {
@@ -83,6 +85,16 @@ const Navbar = () => {
           backdropFilter: "blur(0.225rem)",
           WebkitBackdropFilter: "blur(0.625rem)",
           boxShadow: "0 0 0.0625rem rgba(0, 0, 0, 0.18)",
+        }}
+        onClick={(e) => {
+          // لو ضغطت على أي حاجة بره المنيو والهامبرجر
+          if (
+            menuRef.current &&
+            !menuRef.current.contains(e.target) && // مش المنيو
+            !e.target.closest(".hamburger") // ومش الهامبرجر
+          ) {
+            closeMenu();
+          }
         }}
       >
         {/* //^ Logo with hover effect (black logo default on mobile) */}
@@ -158,7 +170,7 @@ const Navbar = () => {
         {/* //^ Mobile Menu (floating dropdown) */}
         {isOpen && (
           <div
-          ref={menuRef}
+            ref={menuRef}
             className="fixed top-[calc(13vh+1rem)] left-[5vw] right-[5vw] rounded-[0.9375rem] p-6 shadow-lg z-999 lg:hidden flex flex-col gap-6 border border-white/20 transition-all duration-300 transform"
             style={{
               background: "rgba(255, 255, 255, 0.95)",
@@ -225,8 +237,10 @@ const Navbar = () => {
 
         {/* //^ Right controls: hamburger (mobile) + join button (desktop) */}
         <div className="flex items-center gap-4">
-          <Link className="hidden lg:inline-block px-5.25 py-2 bg-[#e0ecff] text-[#939393] font-extrabold text-[1.375rem] rounded-[1.25rem] cursor-pointer transition-all duration-300 ease-out hover:text-[#548de8] hover:shadow-[0_0_1.25rem_#548de8] hover:-translate-y-0.5"
-            to="join-us">
+          <Link
+            className="hidden lg:inline-block px-5.25 py-2 bg-[#e0ecff] text-[#939393] font-extrabold text-[1.375rem] rounded-[1.25rem] cursor-pointer transition-all duration-300 ease-out hover:text-[#548de8] hover:shadow-[0_0_1.25rem_#548de8] hover:-translate-y-0.5"
+            to="join-us"
+          >
             Join Us
           </Link>
 
